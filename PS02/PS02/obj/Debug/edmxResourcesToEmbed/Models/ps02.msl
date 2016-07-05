@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ps02ModelStoreContainer" CdmEntityContainer="ps02Entities">
+    <EntitySetMapping Name="shows">
+      <EntityTypeMapping TypeName="ps02Model.show">
+        <MappingFragment StoreEntitySet="shows">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="administration" ColumnName="administration" />
+          <ScalarProperty Name="distribution" ColumnName="distribution" />
+          <ScalarProperty Name="premiere" ColumnName="premiere" />
+          <ScalarProperty Name="nrOfTickets" ColumnName="nrOfTickets" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tickets">
+      <EntityTypeMapping TypeName="ps02Model.ticket">
+        <MappingFragment StoreEntitySet="tickets">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idShow" ColumnName="idShow" />
+          <ScalarProperty Name="row" ColumnName="row" />
+          <ScalarProperty Name="nr" ColumnName="nr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="ps02Model.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="role" ColumnName="role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

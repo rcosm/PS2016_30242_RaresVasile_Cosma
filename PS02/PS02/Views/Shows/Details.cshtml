@@ -1,0 +1,58 @@
+﻿@model PS02.Models.show
+
+@{
+    ViewBag.Title = "Shows Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>show</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.administration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.administration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.distribution)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.distribution)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.premiere)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.premiere)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nrOfTickets)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nrOfTickets)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

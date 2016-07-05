@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ps02Model.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="shows">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="administration" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="distribution" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="premiere" Type="date" Nullable="false" />
+    <Property Name="nrOfTickets" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tickets">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idShow" Type="int" Nullable="false" />
+    <Property Name="row" Type="int" Nullable="false" />
+    <Property Name="nr" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="role" Type="varchar" MaxLength="45" Nullable="false" />
+  </EntityType>
+  <Association Name="idShow">
+    <End Role="shows" Type="Self.shows" Multiplicity="1" />
+    <End Role="tickets" Type="Self.tickets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="shows">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tickets">
+        <PropertyRef Name="idShow" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ps02ModelStoreContainer">
+    <EntitySet Name="shows" EntityType="Self.shows" Schema="ps02" store:Type="Tables" />
+    <EntitySet Name="tickets" EntityType="Self.tickets" Schema="ps02" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="ps02" store:Type="Tables" />
+    <AssociationSet Name="idShow" Association="Self.idShow">
+      <End Role="shows" EntitySet="shows" />
+      <End Role="tickets" EntitySet="tickets" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

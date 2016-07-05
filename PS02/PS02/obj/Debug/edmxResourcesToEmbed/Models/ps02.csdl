@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ps02Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="show">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="administration" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="distribution" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="premiere" Type="DateTime" Nullable="false" />
+    <Property Name="nrOfTickets" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tickets" Relationship="Self.idShow" FromRole="shows" ToRole="tickets" />
+  </EntityType>
+  <EntityType Name="ticket">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idShow" Type="Int32" Nullable="false" />
+    <Property Name="row" Type="Int32" Nullable="false" />
+    <Property Name="nr" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="show" Relationship="Self.idShow" FromRole="tickets" ToRole="shows" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="role" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="idShow">
+    <End Role="shows" Type="Self.show" Multiplicity="1" />
+    <End Role="tickets" Type="Self.ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="shows">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tickets">
+        <PropertyRef Name="idShow" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ps02Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="shows" EntityType="Self.show" />
+    <EntitySet Name="tickets" EntityType="Self.ticket" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <AssociationSet Name="idShow" Association="Self.idShow">
+      <End Role="shows" EntitySet="shows" />
+      <End Role="tickets" EntitySet="tickets" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
